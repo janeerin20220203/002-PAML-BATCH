@@ -11,7 +11,7 @@ opendir FF, "$result_file" or die;
 open my $OUT, '>', "branchsite_del.txt" or die;
 print $OUT "Gene_Name\tNode\tModel\tlnL\t2lnL\tP_Value\tLevel_Parameters\tPositive_Site\n";
 
-my @files = grep(/\.fas$/i, readdir FF);
+my @files = grep(/\.fasta$/i, readdir FF);
 for my $i (@files){
 	opendir SF,"./$result_file/$i" or die;
 	my @second = grep(/\.txt$/i, readdir SF);
@@ -29,7 +29,7 @@ for my $i (@files){
 			if (/^lnL/) {
 		 		chomp;
 		 		my @temp = split(/\s+/, $_);
-		 		$malnl = $temp[2];
+		 		$malnl = $temp[4];
 		 	}
 		 	if (/^foreground/){
 		 		chomp;
@@ -45,7 +45,7 @@ for my $i (@files){
 		 	if (/^lnL/) {
 		 		chomp;
 		 		my @tempp = split(/\s+/, $_);
-		 		$ma0lnl = $tempp[2];
+		 		$ma0lnl = $tempp[4];
 		 	}
 		 	if (/^background/){
 		 		chomp;
